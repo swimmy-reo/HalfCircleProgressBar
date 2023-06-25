@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
@@ -82,6 +83,7 @@ fun LevelCounter(
                 modifier = Modifier
                     .alpha(0.4F)
                     .layoutId(ComponentId.MinLevel),
+                textAlign = TextAlign.Center,
             )
             Text(
                 text = MAX_LEVEL.toString(),
@@ -90,6 +92,7 @@ fun LevelCounter(
                 modifier = Modifier
                     .alpha(0.4F)
                     .layoutId(ComponentId.MaxLevel),
+                textAlign = TextAlign.Center,
             )
 
             Row(
@@ -189,7 +192,7 @@ private fun HalfCircleProgressBar(
             )
             val minLevelPlaceable =
                 measurables.find { it.layoutId == ComponentId.MinLevel }
-                    ?.measure(constraints)
+                    ?.measure(minLevelConstraints)
                     ?: error("not found")
             val maxLeveSize = MaxLevelSize(
                 progressBarWidth = progressBarSize.width,
@@ -203,7 +206,7 @@ private fun HalfCircleProgressBar(
             )
             val maxLevelPlaceable =
                 measurables.find { it.layoutId == ComponentId.MaxLevel }
-                    ?.measure(constraints)
+                    ?.measure(maxLevelConstraints)
                     ?: error("not found")
 
             // 現在のレベルのサイズ
@@ -357,8 +360,8 @@ data class MinLevelSize(
 ) : HorizontalRatio, VerticalRatio {
     val width get() = (progressBarWidth * horizontalRatio).roundToInt()
     val height get() = (progressBarHeight * verticalRatio).roundToInt()
-    override val horizontalRatio: Double = 0.026
-    override val verticalRatio: Double = 0.1
+    override val horizontalRatio: Double = 0.1
+    override val verticalRatio: Double = 0.2
 }
 
 data class MaxLevelSize(
@@ -367,8 +370,8 @@ data class MaxLevelSize(
 ) : HorizontalRatio, VerticalRatio {
     val width get() = (progressBarWidth * horizontalRatio).roundToInt()
     val height get() = (progressBarHeight * verticalRatio).roundToInt()
-    override val horizontalRatio: Double = 0.08
-    override val verticalRatio: Double = 0.1
+    override val horizontalRatio: Double = 0.1
+    override val verticalRatio: Double = 0.2
 }
 
 private sealed interface XOffset {
