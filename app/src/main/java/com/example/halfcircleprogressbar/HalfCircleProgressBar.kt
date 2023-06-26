@@ -318,7 +318,7 @@ private sealed interface HorizontalRatio {
     val horizontalRatio: Double
 }
 
-data class ProgressBarSize(
+private data class ProgressBarSize(
     val parentWidth: Int,
 ) : HorizontalRatio, VerticalRatio {
     val width get() = (parentWidth * horizontalRatio).roundToInt()
@@ -327,14 +327,14 @@ data class ProgressBarSize(
     override val verticalRatio: Double = 0.494
 }
 
-data class TopSpacerSize(
+private data class TopSpacerSize(
     val progressBarHeight: Int,
 ) : VerticalRatio {
     val height get() = (progressBarHeight * verticalRatio).roundToInt()
     override val verticalRatio: Double = 0.2
 }
 
-data class ImageSize(
+private data class ImageSize(
     val progressBarWidth: Int,
     val progressBarHeight: Int,
 ) : HorizontalRatio, VerticalRatio {
@@ -344,7 +344,7 @@ data class ImageSize(
     override val verticalRatio: Double = 0.857
 }
 
-data class CurrentLevelSize(
+private data class CurrentLevelSize(
     val progressBarWidth: Int,
     val progressBarHeight: Int,
 ) : HorizontalRatio, VerticalRatio {
@@ -354,7 +354,7 @@ data class CurrentLevelSize(
     override val verticalRatio: Double = 0.3
 }
 
-data class MinLevelSize(
+private data class MinLevelSize(
     val progressBarWidth: Int,
     val progressBarHeight: Int,
 ) : HorizontalRatio, VerticalRatio {
@@ -364,7 +364,7 @@ data class MinLevelSize(
     override val verticalRatio: Double = 0.2
 }
 
-data class MaxLevelSize(
+private data class MaxLevelSize(
     val progressBarWidth: Int,
     val progressBarHeight: Int,
 ) : HorizontalRatio, VerticalRatio {
@@ -382,14 +382,14 @@ private sealed interface YOffset {
     val yOffset: Int
 }
 
-data class ProgressBarOffset(
+private data class ProgressBarOffset(
     val parentWidth: Int,
     val progressBarWidth: Int,
 ) : XOffset {
     override val xOffset get() = (parentWidth / 2) - (progressBarWidth / 2)
 }
 
-data class ImageOffset(
+private data class ImageOffset(
     val parentWidth: Int,
     val topSpacerHeight: Int,
     val progressBarHeight: Int,
@@ -400,7 +400,7 @@ data class ImageOffset(
     override val xOffset get() = (parentWidth / 2) - (imageWidth / 2)
 }
 
-data class MinLevelOffset(
+private data class MinLevelOffset(
     val topSpacerHeight: Int,
     val progressBarHeight: Int,
     val horizontalPadding: Int,
@@ -412,7 +412,7 @@ data class MinLevelOffset(
     val halfYOffset get() = (progressBarHeight * verticalRatio / 2).toInt()
 }
 
-data class MaxLevelOffset(
+private data class MaxLevelOffset(
     val parentWidth: Int,
     val progressBarHeight: Int,
     val horizontalPadding: Int,
@@ -422,7 +422,7 @@ data class MaxLevelOffset(
     override val xOffset get() = parentWidth - horizontalPadding - (maxLevelWidth / 2)
 }
 
-data class CurrentLevelOffset(
+private data class CurrentLevelOffset(
     val parentWidth: Int,
     val totalStepCountWidth: Int,
     val progressBarHeight: Int,
